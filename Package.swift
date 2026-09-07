@@ -13,8 +13,8 @@ let package = Package(
     ],
     products: [
         .library(name: "Checkpoint", targets: ["Checkpoint"]),
-        .library(name: "Checkpoint Standard Library Integration", targets: ["Checkpoint Standard Library Integration"]),
-        .library(name: "Checkpoint Foundation Library Integration", targets: ["Checkpoint Foundation Library Integration"]),
+
+        .library(name: "Checkpoint Foundation Integration", targets: ["Checkpoint Foundation Integration"]),
         .library(name: "Checkpoint Test Support", targets: ["Checkpoint Test Support"]),
     ],
     dependencies: [],
@@ -25,20 +25,13 @@ let package = Package(
             ],
             path: "Sources/Checkpoint"
         ),
+        
         .target(
-            name: "Checkpoint Standard Library Integration",
+            name: "Checkpoint Foundation Integration",
             dependencies: [
                 .target(name: "Checkpoint"),
             ],
-            path: "Sources/Checkpoint Standard Library Integration"
-        ),
-        .target(
-            name: "Checkpoint Foundation Library Integration",
-            dependencies: [
-                .target(name: "Checkpoint"),
-                .target(name: "Checkpoint Standard Library Integration"),
-            ],
-            path: "Sources/Checkpoint Foundation Library Integration"
+            path: "Sources/Checkpoint Foundation Integration"
         ),
         .target(
             name: "Checkpoint Test Support",
@@ -52,8 +45,7 @@ let package = Package(
             dependencies: [
                 .target(name: "Checkpoint"),
                 .target(name: "Checkpoint Test Support"),
-                .target(name: "Checkpoint Standard Library Integration"),
-                .target(name: "Checkpoint Foundation Library Integration"),
+                .target(name: "Checkpoint Foundation Integration"),
             ],
             path: "Tests/Checkpoint Tests"
         ),
