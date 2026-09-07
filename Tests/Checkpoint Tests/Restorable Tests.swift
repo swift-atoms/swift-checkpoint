@@ -3,7 +3,7 @@ import Checkpoint_Test_Support
 import Testing
 
 @Suite
-struct `Restorable Tests` {
+struct `Checkpoints restore state after mutation` {
 
     @Test
     func `copyable state gets checkpointing for free`() {
