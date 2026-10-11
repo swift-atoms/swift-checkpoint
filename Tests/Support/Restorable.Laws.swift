@@ -1,6 +1,8 @@
 public import Checkpoint
 
-public enum RestorableLaws {
+public enum RestorableLaws {}
+
+extension RestorableLaws {
 
     @inlinable
     public static func seekToCurrentIsIdentity<S: Restorable & ~Copyable, O: Equatable>(

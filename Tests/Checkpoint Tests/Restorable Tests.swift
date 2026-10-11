@@ -47,6 +47,9 @@ extension Int: Restorable {}
 private struct Counter: Restorable {
 
     private(set) var count = 0
+}
+
+extension Counter {
 
     mutating func increment() {
         count += 1
