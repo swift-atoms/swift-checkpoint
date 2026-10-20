@@ -7,5 +7,7 @@ extension Swift.ArraySlice {
 }
 
 extension ArraySlice.Checkpoint {
-    public static func == (lhs: Self, rhs: Self) -> Bool { lhs.input.startIndex == rhs.input.startIndex }
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.input.startIndex == rhs.input.startIndex
+    }
 }
