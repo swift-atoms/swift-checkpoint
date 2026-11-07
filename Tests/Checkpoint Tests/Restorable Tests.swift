@@ -2,43 +2,47 @@ public import Checkpoint
 import Checkpoint_Test_Support
 import Testing
 
-@Suite
-struct `Checkpoints restore state after mutation` {
+enum `Restorable Tests` {}
 
-    @Test
-    func `copyable state gets checkpointing for free`() {
-        var state = 41
-        let mark = state.checkpoint
+extension `Restorable Tests` {
+    @Suite
+    struct `Checkpoints restore state after mutation` {
 
-        state += 1
-        #expect(state == 42)
+        @Test
+        func `copyable state gets checkpointing for free`() {
+            var state = 41
+            let mark = state.checkpoint
 
-        state.seek(to: mark)
-        #expect(state == 41)
-    }
+            state += 1
+            #expect(state == 42)
 
-    @Test
-    func `seek to current checkpoint is the identity`() {
-        var counter = Counter()
-        counter.increment()
+            state.seek(to: mark)
+            #expect(state == 41)
+        }
 
-        #expect(
-            RestorableLaws.seekToCurrentIsIdentity(&counter) { $0.count }
-        )
-    }
+        @Test
+        func `seek to current checkpoint is the identity`() {
+            var counter = Counter()
+            counter.increment()
 
-    @Test
-    func `checkpoint restores across mutation`() {
-        var counter = Counter()
-        counter.increment()
-
-        #expect(
-            RestorableLaws.checkpointRestoresAcrossMutation(
-                &counter,
-                mutate: { $0.increment() },
-                observe: { $0.count }
+            #expect(
+                RestorableLaws.seekToCurrentIsIdentity(&counter) { $0.count }
             )
-        )
+        }
+
+        @Test
+        func `checkpoint restores across mutation`() {
+            var counter = Counter()
+            counter.increment()
+
+            #expect(
+                RestorableLaws.checkpointRestoresAcrossMutation(
+                    &counter,
+                    mutate: { $0.increment() },
+                    observe: { $0.count }
+                )
+            )
+        }
     }
 }
 
